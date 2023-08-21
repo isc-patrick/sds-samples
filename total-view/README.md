@@ -17,6 +17,7 @@ Here is a description of the contents of this repository:
 | Component                     | Description                                                                                                                   |
 |-------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | `start.sh`                    | Script used to start the three images as new containers by using the composition defined in the `./docker-compose.yaml` file. |
+| `logs-*.sh`                   | There are four scripts that start with `logs`. They will allw you to pull all the logs (`logs-all.sh`), logs just for iris (`logs-iris.sh`), etc. |
 | `stop.sh`                     | Script used to stop the composition defined in the `./docker-compose.yaml` file. You can use the `./start.sh` script to resume it later and continue your work from where you stopped. |
 | `remove.sh`                   | Script used to remove the containers of the composition and purge the durable folders of IRIS and IRIS Adaptive Analytics. This script can be used after switching to another branch in this Git repository so that your images will be rebuilt with the code from that branch. That is why we need to dispose of the durable data saved outside the containers. This script can also be run when the user needs to clean the durable data saved outside the container in order to start clean in the same branch. |
 | `logs.sh`                     | Script used to follow the logs of the running composition. |
@@ -36,20 +37,80 @@ Make sure you have an AtScale License on file `./licenses/AtScaleLicense.json`.
 
 In order to start InterSystems Total View (frontend, iris and iris adaptive analytics), run the `./start.sh` script.
 
-The composition will start in the background. You can use the `logs.sh` script to follow its logs.
+The composition will start in the background. You can use the `logs-all.sh` script to follow its logs. This script will show you the logs of the three containers running (Frontend, InterSystems IRIS and AtScale). If you want to look at the logs of a specific container, call the appropriate `logs-*.sh` script for it.
 
-When you notice that the logs stopped moving, you should be able to start opening things such as:
+The frontend should start very quickly, but it needs InterSystems IRIS to be running in order for it to work. So if you are in a hurry, you may want to use the `logs-iris.sh` to follow the InterSystems IRIS logs. The following message will be the indicator that you can open Total View and start working with it:
 
-| What | Where | Username | Password |
+```
+[INFO] ...started InterSystems IRIS instance IRIS
+```
+
+OBS: You can ignore some errors that follow the message above about RabbitMQ and the pika library.
+
+Here is the list of endpoints and credentials that you can use:
+
+| What | Where | Username | Default Password |
 |------------------------|---------------------------------------------|-------------|-------|
 | Total View             | http://localhost:8081                       | SystemAdmin | sys   |
-| AtScale                | http://localhost:10500                      | admin       | admin |
-| IRIS Management Portal | http://localhost:42773/csp/sys/UtilHome.csp | SuperUser   | sys   |
+| AtScale Administration | http://localhost:10500                      | admin       | admin |
+| JDBC Access to IRIS    | jdbc:IRIS://localhost:41972/B360            | SystemAdmin | sys   |
+| JDBC Access to AtScale | jdbc:hive2://localhost:11111/project_name   | admin       | admin |
+| MDX A |             | admin       | admin |
+
+# Connecting to Total View using JDBC
+
+We recommend using [DBEaver](https://dbeaver.io/download/) to connect to Total View and work on your target data model. DBEaver brings the InterSystems IRIS JDBC driver already and you should be able to install it and get it connected to InterSystems IRIS in no time.
+
+It is possible to access the InterSystems IRIS Management Portal but you should avoid it and there should be no need for that. Total View will actually let you use a small portion of the InterSystems IRIS Management Portal (the SQL Explorer) from inside Total View itself. You should never need to open up the InterSystems IRIS Management Portal directly.
+
+# Configuring AtScale for the first deployment
+
+If you have just run `start.sh` for the first time, AtScale will require additional configuration steps before it can be used. Open [AtScale Administration](http://localhost:10500). You should see a wizard welcoming you. Press the **Next** button and you will be prompted to change the default admin password.
+
+Next, you will be asked to specify the a port number for your organization. Take the default (11111) and press **Next**. This will be the port which BI tools will use to connect to AtScale.
+
+Finally, AtScale will ask you to configure the Identity Provider for Single Sign-on. Feel free to configure yours if you have one or just chose **Embedded Directory** and click on **Next**.
+
+Click on the **Finish** button and you will be taken to the AtScale Administration Portal.
+
+You can now click on the **SETTINGS** menu at the top and chose **Data Warehouses** on the left. You will see that InterSystems IRIS is already configured as a data warehouse in AtScale. You don't need to configure anything here unless you change the password of IRIS SuperUser.
+
+You should be able to click on **PROJECTS** menu at the top and click on the **ADD NEW PROJECT** green button at the top right of the screen to get a new project started.
+
+# Connecting to AtScale using JDBC
+
+The following text has been extracted from (AtScale Documentation)[https://documentation.atscale.com/2023.2.0/connecting-to-atscale-from-business-intelligence-software/jdbc-client-connections].
+
+To applications that send SQL queries, AtScale uses the same protocols and drivers as a remote HiveServer2 instance. See the [Apache Hive Wiki](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC) for general information on Hive JDBC client connections.
+
+Connecting to AtScale from a Java client is the same as connecting to Hive, however you connect to the AtScale engine. The JDBC connection URL points to a particular AtScale project, for example:
+
+```
+jdbc:hive2://localhost:11111/MYPROJECT
+```
+
+Again [DBEaver](https://dbeaver.io/download/) is a good tool to test SQL queries on AtScale using JDBC because DBeaver will automatically install Apache Hive JDBC driver for you.
+
+To issue an SQL query to AtScale, the SQL table name is the name of the cube and the column names are the cube attribute's query names. For example (notice the back-ticks to escape table and column names containing spaces):
+
+```SQL
+SELECT `Internet Sales Cube`.`Order Month`,
+ SUM(Internet Sales Cube.orderquantity) AS `Order Quantity`
+FROM `Sales Insights`.`Internet Sales Cube`
+GROUP BY `Internet Sales Cube`.`Order Month`
+```
+
+# Connecting to AtSCale using Tableau
+
+**TODO: I don't have tableau or a tableau license to test and document this. I need help.**
 
 # Stopping
 
 You can use the `./stop.sh` script to bring the three containers down and pause them. This will not remove their durable data. You should be able to resume the work by running the `./start.sh` script again.
 
-# Removing containers and durable data
+# Removing containers and durable data (DANGER!)
 
-You can use the `./remove.sh` script to stop and remove the current containers and purge their durable data.
+**WARNING: You can lose your data if you run this procedure!**
+
+You can use the `./remove.sh` script to stop your containers, **remove them and purge their durable data**. This means all your data and configuration will be lost. This procedure is useful if you want a fresh start.
+

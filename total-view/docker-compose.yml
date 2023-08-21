@@ -53,6 +53,7 @@ services:
       IRIS_AGGREGATE_SCHEMA: agg
     ports:
       - "10500-10520:10500-10520"
+      - 11111:11111
     volumes:
       - type: bind
         source: ./irisaa-volumes/data
