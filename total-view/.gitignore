@@ -1,0 +1,22 @@
+# do not commit local VSCode settings
+.vscode/settings.json
+.vscode
+
+# OS generated files
+.DS_Store
+
+# IRIS Adaptive Analytics installer
+*.deb
+irisaa-volumes/conf
+irisaa-volumes/data
+
+# IRIS
+iris-volumes/dur
+
+# Licenses
+licenses/iris.key
+licenses/AtScaleLicense.json
+
+# Local configuration files
+CONF_DOCKER_GTW
+CONF_DOCKER_SUBNET

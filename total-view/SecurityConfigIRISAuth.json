@@ -1,0 +1,204 @@
+{   
+    "initialPasswordHash": "43109382d758c01728262a29e2ae0791ba6ebc44029edebfccef32e7591f8586461b8a44d60b21c395bf2c3b5e852fb7f3652b0a2446d24a619185dc0faa9ba8,9bea618fe60deb635ac62cb8c78bced0cf0b35ec13c953072e89e2809083cffa93a9b624f2ea384fe32036f2e193ab7a0423d61631cee01a18adb129bc33f3e9,10000,SHA512",
+    
+    "applicationRoles": [
+
+        {
+            "roleName": "Data Engineer",
+            "associatedApplicationPrivileges": []
+        },
+        {
+            "roleName": "B360_Admin",
+            "associatedApplicationPrivileges": [
+                {
+                    "resourceName": "B360_SECURITY",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "B360_SECURITY",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "B360_SECURITY_ADVANCED",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_ENTITY_MASTER",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_ENTITY_MASTER",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_BUSINESS_SCHEDULER",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_BUSINESS_SCHEDULER",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_BUSINESS_SCHEDULER",
+                    "resourcePermission": "U"
+                },
+                {
+                    "resourceName": "SDS_DATALOADER_RECIPES",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_DATALOADER_RECIPES",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_DATALOADER_RECIPES",
+                    "resourcePermission": "U"
+                },
+                {
+                    "resourceName": "B360_DATA_INGESTION",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "B360_DATA_INGESTION",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_FILE_MANAGER",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_FILE_MANAGER",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_DATA_CATALOG",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_DATA_CATALOG",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_TRAINING",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "%Development",
+                    "resourcePermission": "U"
+                },
+                {
+                    "resourceName": "SDS_SNAPSHOT",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_SNAPSHOT",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_SNAPSHOT",
+                    "resourcePermission": "U"
+                },
+                {
+                    "resourceName": "%Ens_Portal",
+                    "resourcePermission": "U"
+                },
+                {
+                    "resourceName": "%Ens_MessageTrace",
+                    "resourcePermission": "U"
+                },
+                {
+                    "resourceName": "%Ens_EventLog",
+                    "resourcePermission": "U"
+                },
+                {
+                    "resourceName": "%Ens_MessageContent",
+                    "resourcePermission": "U"
+                },
+                {
+                    "resourceName": "%Ens_MessageHeader",
+                    "resourcePermission": "U"
+                },
+                {
+                    "resourceName": "SDS_SYSTEM_CONFIG",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_SYSTEM_CONFIG",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_EMAIL",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_EMAIL",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_ATSCALE_CONFIG",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_ATSCALE_CONFIG",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_DATALOADER_RECIPES_CUSTOM",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_DATALOADER_RECIPES_CUSTOM",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_DATALOADER_RECIPES_PURGE",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_DATALOADER_RECIPES_RESET",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_DATALOADER_RECIPES_DELETE",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_DATALOADER_RECIPES_INDICES",
+                    "resourcePermission": "W"
+                }
+            ]
+        }
+    ],
+    "ssoRules": [
+        {
+            "userName": "systemadmin",
+            "userJobTitle": "",
+            "ruleType": "USER",
+            "associatedApplicationRoles": [
+                "B360_Admin",
+                "Data Engineer"
+            ]
+        }
+    ],
+    "sqlPrivileges": [
+        {
+            "roleName": "B360_Admin",
+            "resourceType": "Capability",
+            "adminPrivileges": [
+                "%DB_OBJECT_DEFINITION",
+                "%NOCHECK",
+                "%NOINDEX",
+                "%NOLOCK",
+                "%NOTRIGGER",
+                "%BUILD_INDEX"
+            ],
+            "objectPrivileges": "USE"
+        },
+        {
+            "roleName": "B360_Admin",
+            "resourceType": "Table",
+            "objectPrivileges": "SELECT",
+            "objectList": "Ens.MessageBody,Ens.MessageHeader"
+        }
+    ]
+}

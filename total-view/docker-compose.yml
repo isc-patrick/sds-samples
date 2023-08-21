@@ -1,0 +1,93 @@
+---
+version: '3.9'
+
+
+services:
+
+  business360-iris: 
+    image: containers.intersystems.com/iscinternal/business360/helm/iris:${VERSION}
+    hostname: business360-iris
+    cap_add:
+      - IPC_LOCK
+    security_opt:             
+      - seccomp:unconfined
+    privileged: true          
+    environment:
+    - ISC_DATA_DIRECTORY=/volumes/dur
+    command: --key /tmp/iris.key 
+    ports:
+    - "${CONF_IRIS_LOCAL_WEB_PORT}:52773" 
+    - "${CONF_IRIS_LOCAL_JDBC_PORT}:1972" 
+    volumes:
+    - type: bind
+      source: ./licenses/iris.key
+      target: /tmp/iris.key
+    - type: bind
+      source: ./iris-volumes
+      target: /volumes
+    - type: bind
+      source: ./SecurityConfigIRISAuth.json
+      target: /etc/config/security/SecurityConfig.json
+    - type: bind
+      source: ./iris-volumes/generated-files
+      target: /app/src/assets/generated-files
+    networks: 
+      - default
+
+  business360-irisaa:
+    image: containers.intersystems.com/iscinternal/sds/sup-atscale:1.2.1
+    init: true
+    hostname: business360-irisaa
+    cap_add:
+      - IPC_LOCK
+    security_opt:             # For a demo, this is ok and will provide for more performance. Maybe it is not necessary with privileged:true bellow
+      - seccomp:unconfined
+    privileged: true          # For a demo, this is ok and will provide for more performance.
+    environment: 
+      ATSCALE_LB_DNS_NAME: "localhost" # Because we will be opening AtScale on our browsers using localhost
+      DNS_NAME: "business360-irisaa"
+      IRIS_JDBC_URL: jdbc:IRIS://business360-iris:1972/B360
+      IRIS_USER: SuperUser
+      IRIS_PASSWORD: sys
+      IRIS_CONNECTION_NAME: business360
+      IRIS_AGGREGATE_SCHEMA: agg
+    ports:
+      - "10500-10520:10500-10520"
+    volumes:
+      - type: bind
+        source: ./irisaa-volumes/data
+        target: /opt/atscale/data
+      - type: bind
+        source: ./irisaa-volumes/conf
+        target: /opt/atscale/conf
+      - type: bind
+        source: ./licenses
+        target: /etc/atscale-license-secret
+    networks: 
+      - default
+
+  business360-frontend:
+    image: containers.intersystems.com/iscinternal/business360/helm/frontend:${VERSION}
+    hostname: business360-frontend
+    security_opt:             
+    - seccomp:unconfined
+    privileged: true   
+    depends_on:
+    - business360-iris
+    init: true
+    ports:
+    - "${CONF_FRONTEND_LOCAL_PORT}:4200" # Where Nodejs Will be listening
+    volumes:
+      - type: bind
+        source: ./iris-volumes/generated-files
+        target: /app/src/assets/generated-files
+
+    networks: 
+      - default
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: ${CONF_DOCKER_SUBNET}
+          gateway: ${CONF_DOCKER_GTW}
