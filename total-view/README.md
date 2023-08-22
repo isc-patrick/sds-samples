@@ -1,18 +1,18 @@
-# Total View Sample
+# InterSystems Total View in a box
 
-This guide will help you deploy InterSystems Total View on your local PC using docker and a docker compose file.
+This guide will help you deploy InterSystems Total View on your local PC using docker and a docker compose file. 
 
 Here is what you will need:
 * If you are using Windows, **you must** [install Git](https://git-scm.com/download/win) and use GitBash as your shell (instead of cmd or powershell)
 * A machine with at least 32GiB of RAM and 8 physical cores (16 logical cores)
 * Docker installed on your machine configured to have access to at least 10 GiB of RAM and 8 logical cores
-* An IRIS Advanced Server Server License (core based, not concurrent user)
+* An IRIS Advanced Server License (server license, not concurrent user license)
 * An IRIS Adaptive Analytics (AtScale) license
 * An account with InterSystems so you can access our container registry at https://containers.intersystems.com
 
 Feel free to ask your Sales Engineer to help you with the requirements above.
 
-Here is a description of the contents of this repository:
+Here is a description of the contents of this repository that are useful to you:
 
 | Component                     | Description                                                                                                                   |
 |-------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
