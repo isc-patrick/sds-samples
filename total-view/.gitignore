@@ -9,9 +9,13 @@
 *.deb
 irisaa-volumes/conf
 irisaa-volumes/data
+irisaa-volumes/log
+irisaa-volumes/home-atscale
 
 # IRIS
-iris-volumes/dur
+iris-volumes/DurableSYS
+iris-volumes/files-dir
+iris-volumes/generated-files
 
 # Licenses
 licenses/iris.key

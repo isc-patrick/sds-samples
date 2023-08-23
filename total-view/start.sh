@@ -34,17 +34,7 @@ then
     printf "42773" >> ./CONF_IRIS_LOCAL_WEB_PORT
 fi
 
-export CONF_DOCKER_SUBNET=$(head -1 ./CONF_DOCKER_SUBNET)
-
-export CONF_DOCKER_GTW=$(head -1 ./CONF_DOCKER_GTW)
-
-export CONF_FRONTEND_LOCAL_PORT=$(head -1 ./CONF_FRONTEND_LOCAL_PORT)
-
-export CONF_IRIS_LOCAL_JDBC_PORT=$(head -1 ./CONF_IRIS_LOCAL_JDBC_PORT)
-
-export CONF_IRIS_LOCAL_WEB_PORT=$(head -1 ./CONF_IRIS_LOCAL_WEB_PORT)
-
-export VERSION=$(head -1 ./VERSION)
+source ./conf.sh
 
 if [ ! -f ./licenses/iris.key ];
 then
@@ -57,31 +47,45 @@ then
 fi
 
 trace "Making sure ./iris-volumes can be writable for other users so that irisowner inside the container can create dur folder..."
-if [ ! -d ./iris-volumes/dur ];
+if [ ! -d ./iris-volumes/DurableSYS ];
 then
-    chmod o+rwx ./iris-volumes
+    mkdir -p ./iris-volumes/DurableSYS
+    chmod o+rwx ./iris-volumes/DurableSYS
 fi
 
-trace "Making sure ./iris-volumes has the generated-files folder"
-if [ ! -d ./iris-volumes/generated-files ];
+trace "Making sure ./iris-volumes has the files-dir folder"
+if [ ! -d ./iris-volumes/files-dir ];
 then
-    mkdir -p ./iris-volumes/generated-files
-    chmod og+rwx ./iris-volumes/generated-files
+    mkdir -p ./iris-volumes/files-dir
+    chmod og+rwx ./iris-volumes/files-dir
 fi
 
 trace "Making sure ./irisaa-volumes can be writable for other users so that atscale inside the container can create its conf and data folders..."
+chmod o+rwx ./iris-volumes
+
 if [ ! -d ./irisaa-volumes/conf ];
-then
-    chmod o+rwx ./iris-volumes
+then    
     mkdir -p ./irisaa-volumes/conf
     chmod o+w,g+w ./irisaa-volumes/conf
 fi
 
 if [ ! -d ./irisaa-volumes/data ];
 then
-    chmod o+rwx ./iris-volumes
     mkdir -p ./irisaa-volumes/data
     chmod o+w,g+w ./irisaa-volumes/data
+fi
+
+if [ ! -d ./irisaa-volumes/log ];
+then
+    mkdir -p ./irisaa-volumes/log
+    chmod o+w,g+w ./irisaa-volumes/log
+fi
+
+trace "Making sure ./irisaa-volumes has the home-atscale folder"
+if [ ! -d ./irisaa-volumes/home-atscale ];
+then
+    mkdir -p ./irisaa-volumes/home-atscale
+    chmod og+rwx ./irisaa-volumes/home-atscale
 fi
 
 trace "Starting the composition..."
