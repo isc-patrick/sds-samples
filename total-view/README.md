@@ -13,7 +13,11 @@ Here is what you will need:
   * An IRIS Adaptive Analytics (AtScale) license 
   * An account with InterSystems so you can access our container registry at https://containers.intersystems.com
 
-Feel free to ask your **Sales Engineer** to help you with the requirements above. Particularly with the licenses and credentials. Customers must get the proper evaluation licenses to use this.
+Feel free to ask your **Sales Engineer** to help you with the technical requirements above if you have any issues.
+
+You may also need to reach out to your **Sales Executive** to obtain the required licenses for InterSystems IRIS and AtScale. Customers must get the proper evaluation licenses to use this.
+
+**THIS COMPOSITION IS FOR EVALUATION PURPOSES ONLY. IT SHOULD NOT BE INSTALLED ON PRODUCTION SYSTEMS.**
 
 # Versions of softwares on Total View 2.4.0
 
