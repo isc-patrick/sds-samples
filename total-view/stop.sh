@@ -4,9 +4,9 @@ source ./utils.sh
 
 source ./conf.sh
 
-trace "Stopping..."
+msg "Stopping Total View Composition..."
 
 docker-compose stop 
 exit_if_error "Could not stop composition."
 
-trace "Composition stopped."
+msg "Total View composition stopped."

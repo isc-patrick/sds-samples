@@ -29,7 +29,7 @@ exit_with_error() {
 }
 
 function msg {
-	printf "\n${BLUE}$1${RESET}"
+	printf "\n${BLUE}$1${RESET}\n"
 }
 
 function option {
