@@ -8,11 +8,20 @@ Here is what you will need:
 * If you are using Windows, **you must** [install Git](https://git-scm.com/download/win) and use GitBash as your shell (instead of cmd or powershell)
 * A machine with at least 32GiB of RAM and 8 physical cores (16 logical cores)
 * Docker installed on your machine configured to have access to at least 10 GiB of RAM and 8 logical cores
-* An IRIS Advanced Server License (server license, not concurrent user license)
-* An IRIS Adaptive Analytics (AtScale) license
-* An account with InterSystems so you can access our container registry at https://containers.intersystems.com
+* Licenses and Credentials you must get from InterSystems:
+  * An IRIS Advanced Server License (server license, not concurrent user license) - You can get one from the (Evaluation Service)[https://evaluation.intersystems.com]. Make sure you get a license for **InterSystems IRIS Advanced Server Running on Ubuntu Containers for x86**.
+  * An IRIS Adaptive Analytics (AtScale) license 
+  * An account with InterSystems so you can access our container registry at https://containers.intersystems.com
 
-Feel free to ask your Sales Engineer to help you with the requirements above.
+Feel free to ask your **Sales Engineer** to help you with the requirements above. Particularly with the licenses and credentials. Customers must get the proper evaluation licenses to use this.
+
+# Versions of softwares on Total View 2.4.0
+
+This version of Total View uses the following versions of:
+* InterSystems IRIS: 2023.1.1
+* AtScale: 2022.3.2.5281
+
+# Inventory of files and scripts you can use
 
 Here is a description of the contents of this repository that are useful to you:
 
@@ -37,7 +46,7 @@ Here is a description of the contents of this repository that are useful to you:
 | `CONF_DOCKER_GTW`             | The IPv4 gateway to be used when creating the docker network for this docker-compose project The default is 172.20.0.1. |
 
 
-# Starting
+# Starting the Total View composition
 
 Make sure you pick the right IRIS license for your platform. If your machine is a Mac M1/M2, you will need an ARM IRIS license and it must be put on the file `./licenses/iris.key`.
 
@@ -112,7 +121,7 @@ GROUP BY `Internet Sales Cube`.`Order Month`
 
 **TODO: I don't have tableau or a tableau license to test and document this. I need help.**
 
-# Stopping
+# Stopping the Total View Composition
 
 You can use the `./stop.sh` script to bring the three containers down and pause them. This will not remove their durable data. You should be able to resume the work by running the `./start.sh` script again.
 
