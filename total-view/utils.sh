@@ -37,7 +37,7 @@ function option {
 }
 
 function trace {
-	printf "\n\n${YELLOW}$1${RESET}\n"
+	printf "\n\n${PURPLE}$1${RESET}\n"
 }
 
 function warn {
