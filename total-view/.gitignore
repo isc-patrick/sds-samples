@@ -3,6 +3,7 @@
 .vscode
 
 # OS generated files
+**/.DS_Store
 .DS_Store
 
 # IRIS Adaptive Analytics installer

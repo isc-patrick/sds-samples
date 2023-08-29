@@ -1,0 +1,14 @@
+# do not commit local VSCode settings
+**/.vscode/settings.json
+**/.vscode
+
+# OS generated files
+**/.DS_Store
+.DS_Store
+
+# IRIS Adaptive Analytics installer
+*.deb
+
+# Licenses
+**/iris.key
+**/AtScaleLicense.json
