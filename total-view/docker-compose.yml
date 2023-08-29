@@ -14,7 +14,7 @@ services:
       - seccomp:unconfined
     privileged: true          
     environment:
-    - ISC_DATA_DIRECTORY=/dur
+    - ISC_DATA_DIRECTORY=/volumes/dur
     command: --key /tmp/iris.key 
     ports:
     - "${CONF_IRIS_LOCAL_WEB_PORT}:52773" 
@@ -25,7 +25,7 @@ services:
       target: /tmp/iris.key
     - type: bind
       source: ./iris-volumes/DurableSYS
-      target: /dur
+      target: /volumes
     - type: bind
       source: ./iris-volumes/files-dir
       target: /intersystems/FileInterface
