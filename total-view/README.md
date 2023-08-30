@@ -5,7 +5,7 @@ Total View is an InterSystems Product that can run as a Smart Data Service in Ku
 This guide will help you deploy InterSystems Total View on your local PC using docker and a docker compose file. 
 
 Here is what you will need:
-* If you are using Windows, **you must** [install Git](https://git-scm.com/download/win) and use GitBash as your shell (instead of cmd or powershell)
+* If you are using Windows, **you must** [install Git](https://git-scm.com/download/win) and use GitBash as your shell (instead of cmd or powershell). **Make sure you start GitBash as an administrator!**
 * A machine with at least 32GiB of RAM and 8 physical cores (16 logical cores)
 * Docker installed on your machine configured to have access to at least 10 GiB of RAM and 8 logical cores
 * Licenses and Credentials you must get from InterSystems:
@@ -155,3 +155,7 @@ docker system prune -f
 The issue is that another composition is using the same subnet of ours. By bringing down all containers and running `docker system prune` you are removing that docker network that is conflicting with ours. 
 
 Now you can try running `./start.sh` again.
+
+## On Windows - The remove script will not remove some folders
+
+If when you run the `./remove.sh` script on Windows you see some errors saying that some files could not be deleted, you will have to using **Windows Explorer** to remove the `./iris-volumes/DurableSYS/dur` folder yourself.

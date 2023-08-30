@@ -7,7 +7,6 @@ services:
   business360-iris: 
     image: containers.intersystems.com/iscinternal/business360/helm/iris:${VERSION}
     hostname: business360-iris
-    user: "51773"  # Running the container as user 51773 (irisowner) so that volumes will be created by this user instead of by
     cap_add:
       - IPC_LOCK
     security_opt:             
