@@ -1,0 +1,59 @@
+apiVersion: v1
+secrets:
+- field: requiredSecrets.intersystemsContainerRegistrySecret
+  type: image-pull-secret
+  subType: containers.intersystems.com
+  reason: These are the credentials to authenticate with containers.intersystems.com
+endpointDependencies:
+ - dependency: jdbc
+   endpointType: intersystems-iris-jdbc
+   reason: This service will store its information in an InterSystems IRIS database.
+   chartField: jdbcConnectionString
+   optional: false
+endpoints:
+- title: How to use the Java BusyBox Service
+  group: Documentation
+  description: A step-by-step guide regarding how to deploy the Java BusyBox SDS Service for use with IRIS using the SDS Control Plane
+  type: browsing
+  url: https://usconfluence.iscinternal.com/display/FS/How+to+Deploy+the+Java+BusyBox+SDS+Service
+  contexts:
+  - portal
+  - catalog
+  - documentation
+  visibility: foreign
+  presentation: link
+compute:
+  computeSpecs:
+  - name: main
+    label: Busy Box Node Spec.
+    categoryFilter: CO,MO,GP
+    minCPU: 1
+    minRAM: 1
+    nodeSelectorField: compute.main.nodeTypeSelector
+    cpuRequestField: compute.main.cpu
+    memoryRequestField: compute.main.memory
+    help: Specifies how many cores and how much memory the dedicated node will have 
+sections:
+- label: IRIS Login Information 
+  fields:
+  - field: irisUserName
+    type: string 
+    label: IRIS UserName 
+    help: Username of the service to connect to
+  - field: irisPassword 
+    type: password
+    label: IRIS Password 
+    help: Password of the service to connect to 
+
+- label: Busy Box Configuration
+  fields:
+  - field: tableName
+    type: string
+    value: javaBusybox
+    label: Table Name
+    help: Name of table to create
+  - field: frequency
+    type: string
+    value: "30"
+    label: Frequency
+    help: Seconds between calls to database

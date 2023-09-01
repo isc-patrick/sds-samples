@@ -1,0 +1,26 @@
+frequency: "30"
+tableName: javaBusybox
+jdbcConnectionString: jdbc:IRIS://127.0.0.1:1972/USER
+image:
+  registry: your-registry
+  repository: sample-java-busybox
+
+cloudProvider: "dev"
+cloudProviderRegion: "dev-region"
+compute:
+  main:
+    nodeTypeSelector: ""
+    cpu: 100m
+    memory: 512Mi
+
+skaffold: 
+  enabled: false
+  image: to_be_defined_by_skaffold
+
+# These are the secret fields needed to successfully deploy.
+# They will be injected by the control plane:
+requiredSecrets:
+  intersystemsContainerRegistrySecret: ""
+
+irisUserName: ""
+irisPassword: "" 
