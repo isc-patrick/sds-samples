@@ -39,9 +39,6 @@ Here is a description of the contents of this repository that are useful to you:
 | `VERSION`                     | File that contains the version of the product on the current branch |
 | iris-volumes/DurableSYS       | This is where the `dur` folder of Durable %SYS of InterSystems IRIS will be created when the container starts. That is what allows you to stop/start your containers without losing your data. |
 | ./iris-volumes/files-dir       | When using Total View FileDir Data Source connector, you will be able to see your file dir data sources folders being created here. You will also be able to drop files on the `Samples` and `Source` folders to test adding them to the Total View data catalog ingesting them on a Total View Recipe |
-| ./irisaa-volumes/conf          | AtScale configurations will be generated here |
-| ./irisaa-volumes/data          | AtScale data will be saved here so that you can stop/start the containers without losing your data. |
-| ./irisaa-volumes/log          | AtScale log files will be saved here so you can look at them if needed. |
 | ./irisaa-volumes/home-atscale | In case you need to export/import a file from/into AtScale, you can put it on this folder and it will be visible by AtScale on the folder /home/atscale inside the container |
 | `CONF_IRIS_LOCAL_WEB_PORT`    | Local port used to reach the IRIS management portal. Default is 42773 which means that the management portal will be at http://localhost:42773/csp/sys/UtilHome.csp |
 | `CONF_IRIS_LOCAL_JDBC_PORT`   | Local port used to reach the IRIS SuperServer. Default is 41972. Which means that the default JDBC URL will be jdbc:IRIS://localhost:41972/B360 |
