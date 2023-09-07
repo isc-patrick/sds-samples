@@ -36,7 +36,7 @@ services:
       - default
 
   business360-irisaa:
-    image: containers.intersystems.com/iscinternal/sds/sup-atscale:1.2.1
+    image: containers.intersystems.com/iscinternal/sds/sup-atscale:1.2.2
     init: true
     hostname: business360-irisaa
     cap_add:
@@ -56,17 +56,11 @@ services:
       - "10500-10520:10500-10520"
       - 11111:11111
     volumes:
-      - type: bind
-        source: ./irisaa-volumes/data
-        target: /opt/atscale/data
-      - type: bind
-        source: ./irisaa-volumes/conf
-        target: /opt/atscale/conf
-      - type: bind
-        source: ./irisaa-volumes/log
-        target: /opt/atscale/log
-      - type: bind
-        source: ./licenses
+      - irisaa-data:/opt/atscale/data        # Using named volumes instead of binds 
+      - irisaa-conf:/opt/atscale/conf        # so that Windows users can start AtScale on their machines
+      - irisaa-log:/opt/atscale/log
+      - type: bind                           # These must be normal bind volumes because we need to share
+        source: ./irisaa/license             # the license on our machine with AtScale running on the container
         target: /etc/atscale-license-secret
       - type: bind
         source: ./irisaa-volumes/home-atscale
@@ -91,8 +85,13 @@ services:
 
     networks: 
       - default
+
+
 volumes:
   shared-volume-generated-files:
+  irisaa-data:
+  irisaa-conf:
+  irisaa-log:
 
 networks:
   default:
