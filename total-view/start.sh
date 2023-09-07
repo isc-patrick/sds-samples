@@ -63,24 +63,6 @@ fi
 # trace "Making sure ./irisaa-volumes can be writable for other users so that atscale inside the container can create its conf and data folders..."
 chmod o+rwx ./iris-volumes
 
-if [ ! -d ./irisaa-volumes/conf ];
-then    
-    mkdir -p ./irisaa-volumes/conf
-    chmod o+w,g+w ./irisaa-volumes/conf
-fi
-
-if [ ! -d ./irisaa-volumes/data ];
-then
-    mkdir -p ./irisaa-volumes/data
-    chmod o+w,g+w ./irisaa-volumes/data
-fi
-
-if [ ! -d ./irisaa-volumes/log ];
-then
-    mkdir -p ./irisaa-volumes/log
-    chmod o+w,g+w ./irisaa-volumes/log
-fi
-
 # trace "Making sure ./irisaa-volumes has the home-atscale folder"
 if [ ! -d ./irisaa-volumes/home-atscale ];
 then
