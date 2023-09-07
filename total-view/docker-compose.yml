@@ -60,7 +60,7 @@ services:
       - irisaa-conf:/opt/atscale/conf        # so that Windows users can start AtScale on their machines
       - irisaa-log:/opt/atscale/log
       - type: bind                           # These must be normal bind volumes because we need to share
-        source: ./irisaa/license             # the license on our machine with AtScale running on the container
+        source: ./licenses                   # the license on our machine with AtScale running on the container
         target: /etc/atscale-license-secret
       - type: bind
         source: ./irisaa-volumes/home-atscale
