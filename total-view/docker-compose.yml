@@ -5,7 +5,7 @@ version: '3.9'
 services:
 
   business360-iris: 
-    image: containers.intersystems.com/iscinternal/business360/helm/iris:${VERSION}
+    image: containers.intersystems.com/sds-docker-dev/totalview/iris:${VERSION}
     hostname: business360-iris
     cap_add:
       - IPC_LOCK
@@ -36,7 +36,7 @@ services:
       - default
 
   business360-irisaa:
-    image: containers.intersystems.com/iscinternal/sds/sup-atscale:1.2.2
+    image: containers.intersystems.com/sds-docker-dev/totalview/irisaa:${VERSION}
     init: true
     hostname: business360-irisaa
     cap_add:
@@ -70,7 +70,7 @@ services:
       - default
 
   business360-frontend:
-    image: containers.intersystems.com/iscinternal/business360/helm/frontend:${VERSION}
+    image: containers.intersystems.com/sds-docker-dev/totalview/frontend:${VERSION}
     hostname: business360-frontend
     security_opt:             
     - seccomp:unconfined
