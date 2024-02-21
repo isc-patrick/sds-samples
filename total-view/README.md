@@ -69,6 +69,7 @@ Here is the list of endpoints and credentials that you can use:
 
 | What | Where | Username | Default Password |
 |------------------------|---------------------------------------------|-------------|-------|
+| IRIS Management Portal | http://localhost:42773/csp/sys/UtilHome.csp | SuperUser   | sys   |
 | Total View             | http://localhost:8081                       | SystemAdmin | sys   |
 | AtScale Administration | http://localhost:10500                      | admin       | admin |
 | JDBC Access to IRIS    | jdbc:IRIS://localhost:41972/B360            | SystemAdmin | sys   |
@@ -80,6 +81,8 @@ Here is the list of endpoints and credentials that you can use:
 We recommend using [DBEaver](https://dbeaver.io/download/) to connect to Total View and work on your target data model. DBEaver brings the InterSystems IRIS JDBC driver already and you should be able to install it and get it connected to InterSystems IRIS in no time.
 
 It is possible to access the InterSystems IRIS Management Portal but you should avoid it and there should be no need for that. Total View will actually let you use a small portion of the InterSystems IRIS Management Portal (the SQL Explorer) from inside Total View itself. You should never need to open up the InterSystems IRIS Management Portal directly.
+
+For JDBC, use the 'SuperUser' credentials mentioned above.
 
 # Configuring AtScale for the first deployment
 
@@ -142,9 +145,11 @@ This composition is exposing the IRIS Web Server Port at your local port 42773. 
                 "host": "127.0.0.1",
                 "port": 42773
             },
-            "description": "Business 360 Local DEV Environment"
+            "description": "Total View in a box on your local PC"
         },
 ```
+
+You can authenticate with the 'SuperUser' credentials mentioned above.
 
 # Troubleshooting
 
