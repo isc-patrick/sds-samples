@@ -31,7 +31,6 @@ services:
     - type: bind
       source: ./SecurityConfigIRISAuth.json
       target: /etc/config/security/SecurityConfig.json
-    - shared-volume-generated-files:/app/src/assets/generated-files # So that IRIS can leave reconciliation reports here for the webserver to see
     networks: 
       - default
 
@@ -80,15 +79,12 @@ services:
     init: true
     ports:
     - "${CONF_FRONTEND_LOCAL_PORT}:80"
-    volumes:
-      - shared-volume-generated-files:/usr/share/nginx/html/assets/generated-files # IRIS will leave reconciliation reports here
 
     networks: 
       - default
 
 
 volumes:
-  shared-volume-generated-files:
   irisaa-data:
   irisaa-conf:
   irisaa-log:

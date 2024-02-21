@@ -1,14 +1,9 @@
-{   
+{
     "initialPasswordHash": "43109382d758c01728262a29e2ae0791ba6ebc44029edebfccef32e7591f8586461b8a44d60b21c395bf2c3b5e852fb7f3652b0a2446d24a619185dc0faa9ba8,9bea618fe60deb635ac62cb8c78bced0cf0b35ec13c953072e89e2809083cffa93a9b624f2ea384fe32036f2e193ab7a0423d61631cee01a18adb129bc33f3e9,10000,SHA512",
-    
-    "applicationRoles": [
 
+    "applicationRoles": [
         {
-            "roleName": "Data Engineer",
-            "associatedApplicationPrivileges": []
-        },
-        {
-            "roleName": "B360_Admin",
+            "roleName": "System Administrator",
             "associatedApplicationPrivileges": [
                 {
                     "resourceName": "B360_SECURITY",
@@ -23,6 +18,10 @@
                     "resourcePermission": "W"
                 },
                 {
+                    "resourceName": "B360_SECURITY_SQL_USER",
+                    "resourcePermission": "W"
+                },
+                {
                     "resourceName": "SDS_ENTITY_MASTER",
                     "resourcePermission": "R"
                 },
@@ -49,10 +48,6 @@
                 {
                     "resourceName": "SDS_DATALOADER_RECIPES",
                     "resourcePermission": "R"
-                },
-                {
-                    "resourceName": "SDS_DATALOADER_RECIPES",
-                    "resourcePermission": "U"
                 },
                 {
                     "resourceName": "B360_DATA_INGESTION",
@@ -93,10 +88,6 @@
                 {
                     "resourceName": "SDS_SNAPSHOT",
                     "resourcePermission": "W"
-                },
-                {
-                    "resourceName": "SDS_SNAPSHOT",
-                    "resourcePermission": "U"
                 },
                 {
                     "resourceName": "%Ens_Portal",
@@ -165,6 +156,22 @@
                 {
                     "resourceName": "SDS_DATALOADER_RECIPES_INDICES",
                     "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_CCM_EXPORT",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_CCM_EXPORT",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_CCM_IMPORT",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_CCM_IMPORT",
+                    "resourcePermission": "W"
                 }
             ]
         }
@@ -175,27 +182,42 @@
             "userJobTitle": "",
             "ruleType": "USER",
             "associatedApplicationRoles": [
-                "B360_Admin",
-                "Data Engineer"
+                "System Administrator"
             ]
         }
     ],
     "sqlPrivileges": [
         {
-            "roleName": "B360_Admin",
+            "roleName": "System Administrator",
             "resourceType": "Capability",
             "adminPrivileges": [
-                "%DB_OBJECT_DEFINITION",
                 "%NOCHECK",
                 "%NOINDEX",
                 "%NOLOCK",
                 "%NOTRIGGER",
-                "%BUILD_INDEX"
+                "%BUILD_INDEX",
+                "%CREATE_METHOD",
+                "%DROP_METHOD",
+                "%CREATE_FUNCTION",
+                "%DROP_FUNCTION",
+                "%CREATE_PROCEDURE",
+                "%DROP_PROCEDURE",
+                "%CREATE_QUERY",
+                "%DROP_QUERY",
+                "%CREATE_TABLE",
+                "%ALTER_TABLE",
+                "%DROP_TABLE",
+                "%CREATE_VIEW",
+                "%ALTER_VIEW",
+                "%DROP_VIEW",
+                "%CREATE_TRIGGER",
+                "%DROP_TRIGGER",
+                "%DROP_UNOWNED"
             ],
             "objectPrivileges": "USE"
         },
         {
-            "roleName": "B360_Admin",
+            "roleName": "System Administrator",
             "resourceType": "Table",
             "objectPrivileges": "SELECT",
             "objectList": "Ens.MessageBody,Ens.MessageHeader"

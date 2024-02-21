@@ -132,6 +132,19 @@ You can use the `./stop.sh` script to bring the three containers down and pause 
 
 You can use the `./remove.sh` script to stop your containers, **remove them and purge their durable data**. This means all your data and configuration will be lost. This procedure is useful if you want a fresh start.
 
+# Connecting using VSCode
+
+This composition is exposing the IRIS Web Server Port at your local port 42773. You can add the following settings to your VSCode IRIS configuaration to connect to it:
+
+```        "tv-local~iris": {
+            "webServer": {
+                "scheme": "http",
+                "host": "127.0.0.1",
+                "port": 42773
+            },
+            "description": "Business 360 Local DEV Environment"
+        },
+```
 
 # Troubleshooting
 
