@@ -11,7 +11,7 @@ Here is what you will need:
 * Licenses and Credentials you must get from InterSystems:
   * An IRIS Advanced Server License (server license, not concurrent user license) - You can get one from the [Evaluation Service](https://evaluation.intersystems.com). Make sure you get a license for **InterSystems IRIS Advanced Server Running on Ubuntu Containers for x86**.
   * An IRIS Adaptive Analytics (AtScale) license 
-  * An account with InterSystems so you can access our container registry at https://containers.intersystems.com
+  * An account with InterSystems so you can access our container registry at https://irepo.intersystems.com
 
 Feel free to ask your **Sales Engineer** to help you with the technical requirements above if you have any issues.
 
@@ -19,10 +19,10 @@ You may also need to reach out to your **Sales Executive** to obtain the require
 
 **THIS COMPOSITION IS FOR EVALUATION PURPOSES ONLY. IT SHOULD NOT BE INSTALLED ON PRODUCTION SYSTEMS.**
 
-# Versions of softwares on Total View 2.4.0
+# Versions of softwares on Total View:
 
 This version of Total View uses the following versions of:
-* InterSystems IRIS: 2023.1.1
+* InterSystems IRIS: 2023.3.3
 * AtScale: 2022.3.2.5281
 
 # Inventory of files and scripts you can use
@@ -76,6 +76,8 @@ Here is the list of endpoints and credentials that you can use:
 | JDBC Access to AtScale | jdbc:hive2://localhost:11111/project_name   | admin       | admin |
 | MDX A |             | admin       | admin |
 
+**WARNING:** We left AtScale commented out of the composition to save on resources. If you need it, uncoment its service in the composition and start it again.
+  
 # Connecting to Total View using JDBC
 
 We recommend using [DBEaver](https://dbeaver.io/download/) to connect to Total View and work on your target data model. DBEaver brings the InterSystems IRIS JDBC driver already and you should be able to install it and get it connected to InterSystems IRIS in no time.
@@ -85,6 +87,8 @@ It is possible to access the InterSystems IRIS Management Portal but you should 
 For JDBC, use the 'SuperUser' credentials mentioned above.
 
 # Configuring AtScale for the first deployment
+
+**WARNING:** We left AtScale commented out of the composition to save on resources. If you need it, uncoment its service in the composition and start it again.
 
 If you have just run `start.sh` for the first time, AtScale will require additional configuration steps before it can be used. Open [AtScale Administration](http://localhost:10500). You should see a wizard welcoming you. Press the **Next** button and you will be prompted to change the default admin password.
 
@@ -153,6 +157,14 @@ You can authenticate with the 'SuperUser' credentials mentioned above.
 
 # Troubleshooting
 
+## Make sure you run docker login
+
+Make sure you authenticate to `irepo.intersystems.com` with:
+
+```bash
+docker login irepo.intersystems.com
+```
+
 ## failed to create network
 
 When you try to start the composition by running `./start.sh` and you see an error like this:
@@ -164,13 +176,10 @@ failed to create network business-360_default: Error response from daemon: Pool 
 Make sure you don't have any containers running on your machine and run the following command:
 
 ```bash
-docker system prune -f
+docker network prune -f
 ```
 
 The issue is that another composition is using the same subnet of ours. By bringing down all containers and running `docker system prune` you are removing that docker network that is conflicting with ours. 
 
 Now you can try running `./start.sh` again.
 
-## On Windows - The remove script will not remove some folders
-
-If when you run the `./remove.sh` script on Windows you see some errors saying that some files could not be deleted, you will have to using **Windows Explorer** to remove the `./iris-volumes/DurableSYS/dur` folder yourself.

@@ -46,13 +46,6 @@ then
     exit_with_error "Could not find file './licenses/AtScaleLicense.json'. "
 fi
 
-# trace "Making sure ./iris-volumes can be writable for other users so that irisowner inside the container can create dur folder..."
-if [ ! -d ./iris-volumes/DurableSYS ];
-then
-    mkdir -p ./iris-volumes/DurableSYS
-    chmod o+rwx ./iris-volumes/DurableSYS
-fi
-
 # trace "Making sure ./iris-volumes has the files-dir folder"
 if [ ! -d ./iris-volumes/files-dir ];
 then
@@ -76,4 +69,4 @@ exit_if_error "Could not start composition."
 
 msg "Total View Composition started."
 msg "You may want to use some of the logs-*.sh scripts to see if all the containers have finished starting."
-msg "AtScale, particularly, will take a couple of minutes to be ready."
+msg "If it is uncommented in the composition, AtScale, will take a couple of minutes to be ready."

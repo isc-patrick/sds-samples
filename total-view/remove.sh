@@ -16,8 +16,7 @@ rm -rf ./irisaa-volumes/data
 rm -rf ./irisaa-volumes/log
 
 trace "Cleaning IRIS Durable Folder"
-rm -rf ./iris-volumes/DurableSYS
-rm -rf ./iris-volumes/generated-files
-
-trace "If you are using Windows and some files could not be removed, please use Windows explorer to remove the entire ./iris-volumes/DurableSYS folder."
-
+docker volume rm business-360_iris-durable-volume
+docker volume rm total-view_iris-durable-volume
+# Keeping this rm -rf to clean up developer's machines now that we don't need this dur folder anymore
+rm -rf ./iris/volumes/dur
