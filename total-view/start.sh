@@ -64,7 +64,7 @@ then
 fi
 
 # trace "Starting the composition..."
-docker-compose up --remove-orphans -d
+docker compose up --remove-orphans -d
 exit_if_error "Could not start composition."
 
 msg "Total View Composition started."

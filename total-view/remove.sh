@@ -5,7 +5,7 @@ source ./utils.sh
 source ./conf.sh
 
 trace "Removing containers..."
-docker-compose rm -f
+docker compose rm -f
 
 trace "Cleaning IRIS Adaptive Analytics Durable Folder"
 docker volume rm business-360_irisaa-data

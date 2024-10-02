@@ -6,7 +6,7 @@ source ./conf.sh
 
 msg "Stopping Total View Composition..."
 
-docker-compose stop 
+docker compose stop 
 exit_if_error "Could not stop composition."
 
 msg "Total View composition stopped."
