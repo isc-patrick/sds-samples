@@ -78,7 +78,7 @@
                     "resourcePermission": "W"
                 },
                 {
-                    "resourceName": "%Development",
+                    "resourceName": "SDS_IRIS_SQL_EXPLORER",
                     "resourcePermission": "U"
                 },
                 {
@@ -172,6 +172,18 @@
                 {
                     "resourceName": "SDS_CCM_IMPORT",
                     "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_STREAMING",
+                    "resourcePermission": "R"
+                },
+                {
+                    "resourceName": "SDS_STREAMING",
+                    "resourcePermission": "W"
+                },
+                {
+                    "resourceName": "SDS_STREAMING",
+                    "resourcePermission": "U"
                 }
             ]
         }
@@ -191,28 +203,8 @@
             "roleName": "System Administrator",
             "resourceType": "Capability",
             "adminPrivileges": [
-                "%NOCHECK",
-                "%NOINDEX",
-                "%NOLOCK",
-                "%NOTRIGGER",
-                "%BUILD_INDEX",
-                "%CREATE_METHOD",
-                "%DROP_METHOD",
-                "%CREATE_FUNCTION",
-                "%DROP_FUNCTION",
-                "%CREATE_PROCEDURE",
-                "%DROP_PROCEDURE",
-                "%CREATE_QUERY",
-                "%DROP_QUERY",
-                "%CREATE_TABLE",
-                "%ALTER_TABLE",
-                "%DROP_TABLE",
-                "%CREATE_VIEW",
-                "%ALTER_VIEW",
-                "%DROP_VIEW",
-                "%CREATE_TRIGGER",
-                "%DROP_TRIGGER",
-                "%DROP_UNOWNED"
+
+                "%BUILD_INDEX"
             ],
             "objectPrivileges": "USE"
         },
