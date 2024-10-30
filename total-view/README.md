@@ -51,7 +51,7 @@ Here is a description of the contents of this repository that are useful to you:
 
 Make sure you pick the right IRIS license for your platform. If your machine is a Mac M1/M2, you will need an ARM IRIS license and it must be put on the file `./licenses/iris.key`.
 
-Make sure you have an AtScale License on file `./licenses/AtScaleLicense.json`. The AtScale container is commented out by default in the docker-compose file, but start.sh will fail if this file does not exist, but can be empty.
+Make sure you have an AtScale License on file `./licenses/AtScaleLicense.json`. The AtScale container is commented out by default in the docker-compose file, but start.sh will fail if this file does not exist so create it.
 
 In order to start InterSystems Total View (frontend, iris and iris adaptive analytics), run the `./start.sh` script.
 
