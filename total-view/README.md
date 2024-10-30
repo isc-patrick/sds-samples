@@ -51,7 +51,7 @@ Here is a description of the contents of this repository that are useful to you:
 
 Make sure you pick the right IRIS license for your platform. If your machine is a Mac M1/M2, you will need an ARM IRIS license and it must be put on the file `./licenses/iris.key`.
 
-Make sure you have an AtScale License on file `./licenses/AtScaleLicense.json`.
+Make sure you have an AtScale License on file `./licenses/AtScaleLicense.json`. The AtScale container is commented out by default in the docker-compose file, but start.sh will fail if this file does not exist, but can be empty.
 
 In order to start InterSystems Total View (frontend, iris and iris adaptive analytics), run the `./start.sh` script.
 
@@ -69,10 +69,10 @@ Here is the list of endpoints and credentials that you can use:
 
 | What | Where | Username | Default Password |
 |------------------------|---------------------------------------------|-------------|-------|
-| IRIS Management Portal | http://localhost:42773/csp/sys/UtilHome.csp | SuperUser   | sys   |
-| Total View             | http://localhost:8081                       | SystemAdmin | sys   |
+| IRIS Management Portal | http://localhost:8081/csp/sys/UtilHome.csp  | SuperUser   | SYS   |
+| Total View             | http://localhost:8081                       | SystemAdmin | SYS   |
 | AtScale Administration | http://localhost:10500                      | admin       | admin |
-| JDBC Access to IRIS    | jdbc:IRIS://localhost:41972/B360            | SystemAdmin | sys   |
+| JDBC Access to IRIS    | jdbc:IRIS://localhost:41972/B360            | SystemAdmin | SYS   |
 | JDBC Access to AtScale | jdbc:hive2://localhost:11111/project_name   | admin       | admin |
 | MDX A |             | admin       | admin |
 
